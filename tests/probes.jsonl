@@ -1,0 +1,8 @@
+{"id":"probe-01","name":"German Compound Noun","input":"Beitragsbemessungsgrenze","targets":["how_it_splits","vocabulary_fit"],"expected":"High fragmentation, 3+ subword pieces","invariant":"must_report_piece_count"}
+{"id":"probe-02","name":"Turkish Agglutination","input":"Sigortalılığınızın","targets":["how_it_splits","merge_economy"],"expected":"Multiple suffix boundaries, poor merge economy","invariant":"must_identify_suffixes"}
+{"id":"probe-03","name":"Mixed Script","input":"Hello مرحبا 你好","targets":["edge_case_survival","special_token_handling"],"expected":"Script boundary handling, potential fallback tokens","invariant":"must_report_per_script"}
+{"id":"probe-04","name":"Emoji Sequence","input":"👨‍👩‍👧‍👦 family emoji","targets":["special_token_handling"],"expected":"ZWJ sequence handling, possible over-tokenization","invariant":"must_handle_zwj"}
+{"id":"probe-05","name":"URL with Parameters","input":"https://example.com/path?param=value&other=123","targets":["special_token_handling","how_it_splits"],"expected":"URL structure preserved or systematically split","invariant":"must_preserve_url_structure"}
+{"id":"probe-06","name":"Rare Unicode","input":"℃ ™ © ® ¼ ½ ¾","targets":["edge_case_survival","vocabulary_fit"],"expected":"Symbol handling, potential unknown token fallback","invariant":"must_not_drop_symbols"}
+{"id":"probe-07","name":"Learner Probe 1","input":"A B C D E EA B C D E EA B C D E E","targets":[],"expected":"","invariant":"learner_defined"}
+{"id":"probe-08","name":"Learner Probe 2","input":"A B C D E EA B C D E EA B C D E E","targets":[],"expected":"","invariant":"learner_defined"}

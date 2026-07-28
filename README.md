@@ -1,36 +1,44 @@
-# Education Pals Build Pack
+# Token Cost + Fit Checker
 
-- Course: `2ad65768-198c-5614-ba63-948602ecc629`
-- Chapter: `2a930c0a-509a-5dcc-aafb-c7b1eef30dfe`
-- Template: `baw_c002_ch02`
-- Compiled: 2026-07-28T22:53:10.070Z
-- Verification token: `01KYNEX51PKK92G8ZJ45446CVK`
-- Composition mode: `shipgen`
-- Workshop publication: `01KYNEX4BJSS689QQY4Y061W9A`
-- Proof challenge: `fd3daab8bbfd61c90801fa281a3e4d6d`
-- Artifact type: `baw.v3`
-- Repository: https://github.com/educationpals-builds/randeep-bhatia-token-cost-fit-checker-paste-any-languag-2
+A conversational checker that evaluates any pasted text for tokenization cost and model fit across multiple languages.
 
-## Variants
+## How This Checker Was Built
 
-- `README.md` → `README.md`
-- `charter.md` → `charter.md`
-- `blueprints/token-fit-checker.md` → `blueprints/token-fit-checker.md`
-- `prompts/token-fit-pack.md` → `prompts/token-fit-pack.md`
-- `METHOD.md` → `METHOD.md`
-- `VERIFY.md` → `VERIFY.md`
-- `.ep/provenance.json` → `.ep/provenance.json.md`
-- `skills/token-fit-advisor.skill.md` → `skills/token-fit-advisor.skill.md`
-- `data/lane-fit-sheet.md` → `data/lane-fit-sheet.md`
-- `tests/probe-board.md` → `tests/probe-board.md`
-- `tests/pass-gate.md` → `tests/pass-gate.md`
-- `tests/probes.jsonl` → `tests/probes.jsonl`
-- `tests/run-local.md` → `tests/run-local.md`
-- `STORY.md` → `STORY.md`
+This checker was calibrated against real multilingual support tickets. The builder's own sample and verdict serve as the worked example.
 
-## Files
+### The Worked Example
 
-- `manifest.json` — verification manifest
-- `instructions.md` — paste tips per variant
+**Sample:**
+> "Ihr Krankenversicherungsbeitrag wurde angepasst — bitte prüfen Sie die Beitragsbemessungsgrenze." / "Sigortalılığınızın başlangıç tarihini öğrenebilir miyim?" (two verbatim tickets from the queue)
+
+**Traffic source:** 14-day support queue export: 38% German, 22% Turkish, 19% English, remainder Thai / Arabic / Mandarin
+
+**Stakes:** Picks the vocabulary for the on-device assistant — the embedding table is capped and inference is billed per token
+
+**Deadline:** Thursday's architecture review
+
+**Verdict:** A B C D E E A B C D E E
+
+**Weakest dial:** edge_case_survival
+
+## One-Paste Rebuild
+
+To rebuild this checker:
+
+1. Copy the system instructions from `blueprints/token-fit-checker.md`
+2. Paste into any chat model that supports system prompts
+3. The checker is ready — paste any text to get a cost-and-fit read
+
+## Repository Structure
+
+- `charter.md` — The full calibration run
+- `blueprints/token-fit-checker.md` — System instructions for the checker
+- `prompts/token-fit-pack.md` — Standalone prompts, one per dial
+- `skills/token-fit-advisor.skill.md` — Portable skill file
+- `data/lane-fit-sheet.md` — Calibration data sheet
+- `tests/` — Probe board, pass gate, and runner
+- `METHOD.md` — The framework
+- `VERIFY.md` — Verification protocol
+- `STORY.md` — The builder's story
 
 <!-- educationpals-build-verified -->
